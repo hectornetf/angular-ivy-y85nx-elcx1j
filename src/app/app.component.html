@@ -1,19 +1,83 @@
-<hello name="{{ name }}"></hello>
-<p>Start editing to see some magic happen :)</p>
-
 <div class="container mt-3">
-  <div class="row mt-5">
-    <div class="col">
-      <h2>Aula 1 - Angular 1 - 19/07/2022</h2>
+<div class="row mt-5">
+  <div class="col">
+    <h2>Aula I - Angular - 19/07/2022</h2>
 
-      <input
-        type="text"
-        class="form-control"
-        name="name"
-        [(ngModel)]="strName"
-        placeholder="Seu nome"
-      />
-      <br />
+    <div class="form-group">
+      <label>Nome Completo:</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="cliente.name"
+        placeholder="digite seu nome ...">
+      <br>
+      <label class="form-check-label">{{ cliente.name }}</label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" [(ngModel)]="myProperty" class="form-check-input">
+      <label class="form-check-label">Checkbox</label>
+    </div>
+
+    <label class="form-check-label">{{ myProperty }}</label>
+
+    <div class="form-group">
+      <label>Sexo:</label>
+      <select [(ngModel)]="selectedOption" name="gender" class="form-control col-3">
+        <option value="A">Selecione</option>
+        <option *ngFor="let option of selectOptions" [value]="option">
+          {{option}}
+        </option>
+      </select>
+    </div>
+
+    <br>
+    <label class="form-check-label">{{ selectedOption }}</label>
+    <br>
+
+    <div class="form-group">
+      <label>Descreva:</label>
+      <textarea class="form-control col-5" rows="5" name="name" [(ngModel)]="cliente.description"
+        placeholder="descreva seu nome ..."></textarea>
+    </div>
+
+    <button class="btn btn-primary" (click)="clickSalvar()">Salvar</button>
+    <button type="submit" class="btn btn-default ml-2" (click)="clearName()">Cancelar</button>
+
+    <div class="container" style="margin-top: 70px;">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <!-- <th>Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts">
+
+            <td>{{ contact.id }}</td>
+            <td> {{ contact.name }}</td>
+            <td> {{ contact.email }}</td>
+            <!-- <td>
+              <button class="btn btn-primary" (click)="selectContact(contact)"> Show details</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div class="card text-center" *ngIf="selectedContact">
+        <div class="card-header">
+          # {{selectedContact.id}}
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{selectedContact.name}}</h4>
+          <p class="card-text">
+            {{selectedContact.description}}
+          </p>
+        </div>
+
+      </div> -->
     </div>
   </div>
 </div>
+</div>
+
+<router-outlet></router-outlet>
